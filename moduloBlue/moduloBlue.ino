@@ -1,21 +1,29 @@
-char data = 0;
-
-int pinoSaidaBlue = 13;  
-
+int pinoIO = 13;
+char buf;
+ 
 void setup()
 {
-    Serial.begin(9600);
-    pinMode(pinoSaidaBlue,OUTPUT);
-}
 
+  pinMode(pinoIO, OUTPUT);
+  Serial.begin(9600);
+}
+ 
 void loop()
 {
-    data = Serial.read();
-    Serial.print(data);
+  while(Serial.available() > 0)
+  {
+    buf = Serial.read();
+    Serial.print(buf);
     Serial.print("\n");
-    if(data == '1'){
-        digitalWrite(pinoSaidaBlue,HIGH);
-    }else if(data == '0'){
-        digitalWrite(pinoSaidaBlue,LOW);
+
+    if (buf == 'L')
+    {
+      digitalWrite(pinoIO, HIGH);
     }
+    //Caso seja recebido o caracter D, apaga o led
+     if (buf == 'D')
+    {
+      digitalWrite(pinoIO, LOW);
+    }
+  }
 }
