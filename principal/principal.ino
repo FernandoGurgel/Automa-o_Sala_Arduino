@@ -17,15 +17,16 @@ void setup(){
 }
  
 void loop(){
-  
-  buf = Serial.read();
-  Serial.print(buf);
-  Serial.print("\n");
  
   if (buf == '1' || ligado == true){
+    digitalWrite(pinoBlue,HIGH);
     ligado = true;
     verificaPorta(ligado);
   }else{
+    digitalWrite(pinoBlue,LOW);
+    buf = Serial.read();
+  	Serial.print(buf);
+  	Serial.print("\n");
     verificaPorta(ligado);
   }
   
