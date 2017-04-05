@@ -17,16 +17,21 @@ void setup(){
 }
  
 void loop(){
- 
-  if (buf == '1' || ligado == true){
+  buf = Serial.read();
+  
+  
+  if (buf == 'L' || ligado == true){
+    Serial.print(buf);
+    Serial.print("\n");
+    
     digitalWrite(pinoBlue,HIGH);
     ligado = true;
     verificaPorta(ligado);
-  }else{
+  }else if ((buf == 'D' || ligado == false){
+    Serial.print(buf);
+    Serial.print("\n");
+    
     digitalWrite(pinoBlue,LOW);
-    buf = Serial.read();
-  	Serial.print(buf);
-  	Serial.print("\n");
     verificaPorta(ligado);
   }
   
@@ -35,33 +40,17 @@ void loop(){
 void verificaPorta(boolean args){
   if (args){
      acionamento = digitalRead(pinoSensor);
-       if (acionamento == LOW)
-      {
+     
+     if (acionamento == LOW){
         digitalWrite(pinoAbriPorta, LOW);
         Serial.println("Parado");
       }
-      else 
-      {
+      else {
+        
         digitalWrite(pinoAbriPorta, HIGH);
         Serial.println("Movimento !!!");
-        delay(1000);
-         acionamento = digitalRead(pinoSensor);
-         if(acionamento == HIGH){
-           abrirPorta();
-           return;
-         }
-         else {
-           return;
-         }
+        
       }
   }
 }
- 
- void abrirPorta (){
-   Serial.print("Porta Aberta!!!");
-   digitalWrite(pinoPorta,HIGH);
-   delay(5000);
-   digitalWrite(pinoPorta,LOW);
-   digitalWrite(pinoAbriPorta, LOW);
-   return;
- }
+
