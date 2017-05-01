@@ -94,7 +94,7 @@ void parametroBluetooth(char args){
 }
 
 void sistemaComputador(boolean args){
-  if(args){
+  if(args && ligarSistema){
     digitalWrite(pinComputador,ON);
   }else{
     digitalWrite(pinComputador,OFF);
@@ -102,7 +102,7 @@ void sistemaComputador(boolean args){
 }
 
 void sistemaLampada(boolean args){
-  if(args){
+  if(args && ligarSistema){
     digitalWrite(pinLampada,ON);
   }else{
     digitalWrite(pinLampada,OFF);
@@ -110,7 +110,7 @@ void sistemaLampada(boolean args){
 }
 
 void sistemaAr(boolean args){
-  if(args){
+  if(args && ligarSistema){
     digitalWrite(pinAr,ON);
   }else{
     digitalWrite(pinAr,OFF);
